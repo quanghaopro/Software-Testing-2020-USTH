@@ -51,3 +51,36 @@ public static Vector union(Vector v1, Vector v2)
     	return v3;
 	}
 }
+Ex1-5
+The program will never reach the first element of the array. Fix:
+
+ for (int i = x.length-1; x >= 0; x--)
+The program will return the first index of zero. Fix:
+
+ for (int i = x.length-1; x >= 0; x--)
+The program will count 0 as positive. Fix:
+
+ if (x[i] > 0)
+The program will not count the odd negative numbers. Fix:
+
+ if (x[i] % 2 == -1 || x[i] > 0)
+b. In the four given program, there is no way to not execute the fault since the fault is in the code that will always be executed with any test case.
+
+c.
+
+x = [1, 1, 5]; y = 5;
+x = [0];
+x = [2, 2, 2];
+x = [-2, -4, 2, 4];
+d.
+
+x = [2, 3, 1]; y = 5;
+x = [0, 1, 1];
+Cannot since the error here always lead to the failure.
+Cannot since the error here always lead to the failure.
+e.
+
+x = [2, 3, 5]; y = 2; i = 0; PC = "return -1"
+x = [0, 1, 0]; i = 0; PC = "i < x.length"
+x = [-4, 2, 0, 2]; i = 2; count = 2; PC = "i++"
+x = [-3, -2, 0, 1, 4]; i = 0; count = 0; PC = "i++"
