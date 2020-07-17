@@ -1,0 +1,2 @@
+Testing can only show the presence of the failures
+and in order to reduce risks, testers have to work with developers

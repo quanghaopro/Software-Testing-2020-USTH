@@ -1,0 +1,8 @@
++ Level 2 Thinking :
+- Purpose is to show failures Looking for failures is a negative activity 
+- Puts testers and developers into an adversarial relationship
+
++ Level 4 Thinking :
+- A mental discipline that increases quality
+- Testing is only one way to increase quality
+- Test engineers can become technical leaders of the project
