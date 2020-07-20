@@ -1,4 +1,4 @@
-## Ex6-4.1
+## Ex6.4-1
 ```Java
 // Introduction to Software Testing
 // Authors: Paul Ammann & Jeff Offutt
