@@ -1,0 +1,32 @@
+Ex 6.2-5
+
+a. Four tests are needed.
+
+| V1   | V2   | Op   |
+| ---- | ---- | ---- |
+| -2   | -2   | +    |
+| 0    | 0    | -    |
+| 2    | 2    | *    |
+| 2    | 2    | /    |
+
+b. Eight tests are needed.
+
+| V1   | V2   | Op   |
+| ---- | ---- | ---- |
+| 2    | 2    | +    |
+| -2   | 2    | +    |
+| 0    | 2    | +    |
+| 2    | -2   | +    |
+| 2    | 0    | +    |
+| 2    | 2    | -    |
+| 2    | 2    | *    |
+| 2    | 2    | /    |
+
+c. Tests are needed to satisfy the All Combinations criterion: 3 * 3 * 4 = 36
+
+d. Tests to satisfy the Pair-Wise Coverage criterion.
+
+Pairs: 7 + 7 + 7 + 4 + 4 + 4 = 33
+
+Since each test can accommodate 3 pairs -> at least 11 tests are needed.
+
