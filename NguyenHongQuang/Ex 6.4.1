@@ -1,0 +1,107 @@
+
+import static org.junit.Assert.*;
+import org.junit.*;
+import java.util.*;
+
+/**
+ * This class contains 13 JUnit tests for the Iterator interface. The tests are derived from an
+ * IDM (input domain modeling) based on the JavaDoc API for Iterator.
+ * The three methods tested are: hasNext(), next(), remove()
+ * The following characteristics have been identified and are used to generate tests for the methods:
+ * C1: iterator has more values
+ * C2: iterator returns a non-null object reference
+ * C3: remove() is supported
+ * C4: remove() precondition is satisfied
+ * C5: collection in consistent state while iterator in use
+ * Each characteristic has a boolean partition
+ */
+
+public class IteratorTest {
+
+    private List<String> list;          // test fixture
+    private Iterator<String> itr;       // test fixture
+
+    @Before public void setUp()         // set up test fixture
+    {
+        list = new ArrayList<String>();
+        list.add ("cat");
+        list.add ("dog");
+        itr = list.iterator();
+    }
+
+    @Test(expected=NoSuchElementException.class)
+    public void testNext_C1()
+    {
+        itr.next(); itr.next();        // consume the cat and the dog
+        itr.next();                    // now empty
+    }
+
+
+    @Test public void testNext_C2()
+    {
+        list = new ArrayList<String>();
+        list.add (null);
+        itr = list.iterator();
+        assertNull (itr.next());
+    }
+    
+    @Test public void testRemove_BaseCase()
+    {
+        itr.next();
+        itr.remove();
+        assertFalse (list.contains ("cat"));
+    }
+    
+    @Test public void testRemove_C1()
+    {
+        itr.next(); itr.next();        // consume the cat and the dog
+        itr.remove();                  // remove dog from list.
+        assertFalse (list.contains ("dog"));
+    }
+    
+    @Test public void testRemove_C2()
+    {
+        list.add (null);
+        list.add ("elephant");
+        itr = list.iterator();
+        itr.next(); itr.next();        // consume the cat and the dog
+        itr.next();        // consume null; iterator not empty
+        itr.remove();      // remove null from list
+        assertFalse (list.contains (null));
+    }
+
+    @Test public void testRemoveNullString()
+    {
+        list= null;
+        itr=list.iterator();
+        itr.next();
+        itr.remove();
+    }
+    
+    @Test(expected=UnsupportedOperationException.class)
+    public void testRemove_C3()
+    {
+        list = Collections.unmodifiableList (list);
+        itr = list.iterator();
+        itr.next();   // consume first element to make C4 true
+        try {
+            itr.remove();
+            fail("Expected UnsupportedOperationException");
+        } catch (UnsupportedOperationException expected) {}
+    }
+    
+    @Test (expected=IllegalStateException.class)
+    public void testRemove_C4()
+    {
+        itr.remove();
+    }
+    
+    @Test (expected=ConcurrentModificationException.class)
+    public void testRemove_C5()
+    {
+        itr.next();
+        list.add ("elephant");
+        itr.remove();
+    }
+
+}
