@@ -1,9 +1,9 @@
 # Chapter 6 - Section 6.1 - Exercise 1
 
-| Characteristics | b_1 | b_2 |
-|-----------------|-----|-----|
-| Ascending       | T   | F   |
-| Descending      | T   | F   |
+| Characteristics | b1 | b2 |
+|-----------------|----|----|
+| Ascending       | T  | F  |
+| Descending      | T  | F  |
 
 ## Test cases:
 
