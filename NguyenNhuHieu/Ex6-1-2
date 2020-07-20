@@ -1,0 +1,20 @@
+2. A tester defined three characteristics based on the input parameter
+car: Where Made, Energy Source, and Size. The following
+partitionings for these characteristics have at least two mistakes. Correct them.
+             Where Made
+North America   Europe    Asia
+            Energy Source
+     gas       electric   hybrid
+                 Size
+2-door          4-door    hatch back
+
+
+The two mistake I've seen here are:
+ - Where Made didn't cover everything as there could be places other than the three, could add the remaining continent in like "Africa", "Australia", "South America" or add "Others".
+ 
+ - The "2-door" and "4-door" characteristics shouldn't belong to the same input parameter as "hatch back" as we can have "2-door hatch back" and "4-door hatch back" so they should be seperated.
+
+
+
+
+

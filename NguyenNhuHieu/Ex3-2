@@ -1,0 +1,5 @@
+3.2, Give a one-to-two paragraph explanation for how the inheritance hierarchy can affect controllability and observability.
+
+- Inheritance hierarchy can reduce controllability because in inheritance the sub classes are dependent of its parent class and make the program more complicated thus reduce controllability as we must control all parent class and sub class.
+- Inheritance hierarchy can also reduce observability because we also have to observe a large number of sub classes.
+

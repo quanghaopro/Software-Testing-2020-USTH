@@ -1,0 +1,14 @@
+1. Return to the example at the beginning of the chapter of the two
+characteristics “File F sorted ascending” and “File F sorted
+descending.” Each characteristic has two blocks. Give test case values
+for all four combinations of these two characteristics.
+
+  We have 4 test cases:
+  - “File F sorted ascending”:True ,“File F sorted descending”:True
+       F = { 1 }
+  - “File F sorted ascending”:False ,“File F sorted descending”:True
+       F = { 11, 9, 6, 2, 1 } 
+  - “File F sorted ascending”:True ,“File F sorted descending”:False
+       F = { 1, 4, 7, 9, 25}
+  - “File F sorted ascending”:False ,“File F sorted descending”:False
+       F = { 3, 2, 8, 5, 4 }

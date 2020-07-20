@@ -1,0 +1,14 @@
+1. Suppose that coverage criterion C1 subsumes coverage criterion C2 .Further suppose that test set T1 satisfies C1 on program P, and test set
+T2 satisfies C2 , also on P.
+(a) Does T1 necessarily satisfy C2? Explain.
+(b) Does T2 necessarily satisfy C1? Explain.
+(c) If P contains a fault, and T2 reveals the fault, T1 does not
+necessarily also reveal the fault. Explain.
+
+(a) Yes. Because of the definition of Criteria Subsumption : A test criterion C1 subsumes C2 if
+and only if every set of test cases that satisfies criterion
+C1 also satisfies C2.
+
+(b) No. Because the opposite of it isn't true.
+
+(c) Because Subsumption is only about criteria, not about test sets so T1 and T2 can be different from each others and so T2 reveals the fault but T1 does not.
