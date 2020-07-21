@@ -1,0 +1,8 @@
+5-1
+(a) Does T1 necessarily satisfy C2?  Explain.
+Yes.  This follows directly from the definition of subsumption.
+(b) Does T2 necessarily satisfy C1?  Explain.
+No. Because there is no requirement that T2 satisfying C2 
+would make T2 satisfy C1.
+(c) If P contains a fault, and T2 reveals the fault, T1 does not necessarily also reveal the fault.  Explain.
+T2 could have containing a test which reveals the fault, but T1 don't have
