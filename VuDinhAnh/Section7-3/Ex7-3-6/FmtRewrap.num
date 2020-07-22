@@ -1,0 +1,63 @@
+1	/** *****************************************************
+2	*  Rewraps the string (Similar to the Unix fmt).
+3	*  Given a string S, eliminate existing CRs and add CRs to the
+4	*  closest spaces before column N.  Two CRs in a row are considered to
+5	*  be "hard CRs" and are left alone.
+6	********************************************************* */
+7
+8	static final char CR = '\n';
+9	static final int inWord      = 0;
+10	static final int betweenWord = 1;
+11	static final int lineBreak   = 2;
+12	static final int crFound     = 3;
+13	static private String fmtRewrap (String S, int N)
+14	{
+15	   int state = betweenWord;
+16	   int lastSpace = -1;
+17	   int col = 1;
+18	   int i = 0;
+19	   char c;
+20
+21	   char SArr [] = S.toCharArray();
+22	   while (i < S.length())
+23	   {
+24	      c = SArr[i];
+25	      col++;
+26	      if (col >= N)
+27	         state = lineBreak;
+28	      else if (c == CR)
+29	         state = crFound;
+30	      else if (c == ' ')
+31	         state = betweenWord;
+32	      else
+33	         state = inWord;
+34	      switch (state)
+35	      {
+36	      case betweenWord:
+37	         lastSpace = i;
+38	         break;
+39
+40	      case lineBreak:
+41	         SArr [lastSpace] = CR;
+42	         col = i-lastSpace;
+43	         break;
+44
+45	      case crFound:
+46	         if (i+1 < S.length() && SArr[i+1] == CR)
+47	         {
+48	            i++; // Two CRs => hard return
+49	            col = 1;
+50	         }
+51	         else
+52	            SArr[i] = ' ';
+53	         break;
+54
+55	      case inWord:
+56	      default:
+57	         break;
+58	      }  // end switch
+59	        i++;
+60	   }  // end while
+61	   S = new String (SArr) + CR;
+62	   return (S);
+63	}
