@@ -1,48 +1,11 @@
-7.2.2-5,
+Ex 7.2.2-6,
+|Test Paths|	Test Requirements that are toured by test paths directly|
+|---|---|
+|[1,2,4,6,1,7]|	[1,2,4], [1,7], [2,4,6], [4,6,1], [6,1,7]|
+|[1,2,4,5,6,1,7]|	[1,2,4], [1,7], [2,4,5], [4,5,6], [5,6,1], [6,1,7]|
+|[1,2,3,2,3,2,4,6,1,7]|	[1,2,3], [1,7], [2,3,2], [2,4,6], [3,2,3], [3,2,4], [4,6,1], [6,1,7]|
+|[1,2,4,6,1,2,4,6,1,7]|	[1,2,4], [1,7], [2,4,6], [4,6,1], [6,1,2], [6,1,7]|
 
-a, Graph: 
-(1): start ; (7): end
-(1) --> (2)
-(2) --> (3)
-(3) --> (2)
-(4) --> (6)
-(4) --> (5)
-(5) --> (6)
-(6) --> (1)
-
-b, Edge Coverage :TR = {(1,2,3), (1,2,4), (2,3,2), (2,4,6), (2,4,5), (3,2,3), (3,2,4), (4,6,1), (4,5,6), (5,6,1), (6,1,7), (6,1,2)}
-
-c,Test path p1 = [1,2,4,5,6,1,7]
-=> This path covers (1,2,4), (2,4,5), (4,5,6), (5,6,1), (6,1,7)
-
-Test path p2 = [1,2,3,2,4,6,1,7]
-=>This path covers (1,2,3), (2,3,2), (3,2,4), (2,4,6), (4,6,1), (6,1,7)
-
-Test path p3 = [1,2,3,2,4,5,6,1,7]
-=>This path covers (1,2,3), (2,3,2), (3,2,4), (2,4,5), (4,5,6), (5,6,1), (6,1,7)
-
-However, two edge pairs (3,2,3) and (6,1,2) are missing and not convered by any of the test path.Thus, given set of test path does not satisfy Edge-Pair Coverage.
-
-d, A test path p tours subpath q if q is a subpath of p.
-A test path p tours subpath q with sidetrips if every edge in q is also in p in the same order.
-=> Test Path does not tour simple path directly
-=> Test Path tours simple path with sidetrip {4,6,1,2,4}
-
-e, TR for Node Coverage = {1, 2, 3, 4, 5, 6, 7}
-Test paths: [1, 2, 3, 2, 4, 5, 6, 1, 7]
-TR for Edge Coverage= {(1,2), (1,7), (2,3), (2,4) ,(3,2),(4,5), (4,6),(5,6),(6,1)}
-Test paths: [1,2,3,2,4,6,1,7], [1,2,4, 5, 6, 1,7]
-TR for Prime Path Coverage = {(1,2,4,6,1), (1,2,4,5,6,1), (2,3,2), (2,4,6,1,2), (2,4,5,6,1,2), (3,2,3), (3,2,4,6,1,7), (3,2,4,5,6,1,7), (4,5,6,1,2,4), (4,5,6,1,2,3), (4,6,1,2,4), (4,6,1,2,3), (5,6,1,2,4,5), (6,1,2,4,6), (6,1,2,4,5,6)}
-
-f, Test path p3 = [1,2,3,2,4,5,6,1,7] achieves Node Coverage but not Edge Coverage.
-
-g, p1 = [1,2,4,5,6,1,7]
-p2 = [1,2,3,2,4,6,1,7]
-p1 and p2 together achieve Egde Coverage but not Prime Path Coverage
-p2 = [1,2,3,2,4,6,1,7]
-p3 = [1,2,3,2,4,5,6,1,7]
-p2 and p3 together achieve Egde Coverage but not Prime Path Coverage
-7.2.2-6,
 
 a,
 
@@ -59,22 +22,18 @@ c,
 
 T Edge Coverage = T Node Coverage U {[1,4,8], [3,6,2,5,8]}
 Although T Edge Coverage tours all edges, T Edge Coverage does not tour prime paths [1,5,9,6,2], [2,5,9,6,2], [3,6,2,5,9], [2,6,10], [5,8,5,2,5], [5,1,6,9,6], [9,6,2,5,8], or [9,6,2,5,9]
- Ex7.2.2-7.md 
-@@ -0,0 +1,19 @@
-7.2.2-7,
 
-a,
+Ex 7.2.2-7,
 
-p2 and p3 are test paths
-p1, p4 and p5 is not a test path because p1 doesn't terminate at a final node, p4 does not start at an initial node and p5 includes an edge that does not exist in the graph
-
-b,
-
-TR Edge Pairs = { [1,2,1], [1,2,3], [1,3,1], [2,1,2], [2,1,3], [2,3,1], [3,1,2], [3,1,3] }
-
-c, 
-
-The set of test paths does not satisfy Edge-Pair Coverage because the remaining candidate paths are not test paths neither p2 nor p3 tours either of the edge-pairs :{ [2,1,2], [3,1,3] }
+(a) p2 and p3 are test paths. p1 does not terminate at a final node. p4 does not
+start at an initial node. p5 includes an edge that does not exist in the graph (3, 2).
+(b) The edge pairs are:
+{ [1, 2, 1], [1, 2, 3], [1, 3, 1], [2, 1, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 1, 3] }
+(c) No. Neither p2 nor p3 tours either of the following edge-pairs:
+{ [2, 1, 2], [3, 1, 3] }
+As discussed in (part a), the remaining candidate paths are not test paths.
+(d) : p3 does not directly tour the prime path. However, p3 does tour the prime path
+with the sidetrip [1, 2, 1].
 
 7.2.3,
 
@@ -154,15 +113,22 @@ d + e,
 The exceptions (enqueue() on full queues and dequeue() on empty queues) as well as observer method. Result in "loop transitions from a state back to itself.
 These are not shown on the diagram for clarity and from a grading perspective, aren't relevant. Labels on nodes show the values of the representation state variables : Elements, size, front and back.
 
-f,Small test :
+Ex 7.4-3
+b) 
+• t1: [f1, f3, f5, f6]
+• t2: [f1, f3, f4, f6]
+• t3: [f1, f2]
+• t4: [f1, f3, f4, f6]
+• t5: [f1, f2, f3, f4, f6]
+c) 
 
-Queue q = new Queue();
-Object obj = new Object();
-q.enqueue(obj);
-q.enqueue(obj);
-q.dequeue();
-q.enqueue(obj);
-q.dequeue();
-q.dequeue();
-q.enqueue(obj);
-q.dequeue();
+[3,5,6]
+[1,2,3,4,6]
+
+-> {t1, t2, t3}, {t1, t3, t4}, or {t1, t5}
+d) 
+One possibility: {t1, t5}
+e) 
+There are 4 prime paths: { [f1, f2, f3, f4, f6], [f1, f2, f3, f5, f6], [f1,
+f3, f4, f6], [f1, f3, f5, f6] }. The second of these paths is not covered by the
+given test paths.
