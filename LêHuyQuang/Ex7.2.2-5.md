@@ -1,0 +1,44 @@
+7.2.2-5,
+
+a, Graph: 
+(1): start ; (7): end
+(1) --> (2)
+(2) --> (3)
+(3) --> (2)
+(4) --> (6)
+(4) --> (5)
+(5) --> (6)
+(6) --> (1)
+
+b, Edge Coverage :TR = {(1,2,3), (1,2,4), (2,3,2), (2,4,6), (2,4,5), (3,2,3), (3,2,4), (4,6,1), (4,5,6), (5,6,1), (6,1,7), (6,1,2)}
+
+c,Test path p1 = [1,2,4,5,6,1,7]
+=> This path covers (1,2,4), (2,4,5), (4,5,6), (5,6,1), (6,1,7)
+
+Test path p2 = [1,2,3,2,4,6,1,7]
+=>This path covers (1,2,3), (2,3,2), (3,2,4), (2,4,6), (4,6,1), (6,1,7)
+
+Test path p3 = [1,2,3,2,4,5,6,1,7]
+=>This path covers (1,2,3), (2,3,2), (3,2,4), (2,4,5), (4,5,6), (5,6,1), (6,1,7)
+
+However, two edge pairs (3,2,3) and (6,1,2) are missing and not convered by any of the test path.Thus, given set of test path does not satisfy Edge-Pair Coverage.
+
+d, A test path p tours subpath q if q is a subpath of p.
+A test path p tours subpath q with sidetrips if every edge in q is also in p in the same order.
+=> Test Path does not tour simple path directly
+=> Test Path tours simple path with sidetrip {4,6,1,2,4}
+
+e, TR for Node Coverage = {1, 2, 3, 4, 5, 6, 7}
+Test paths: [1, 2, 3, 2, 4, 5, 6, 1, 7]
+TR for Edge Coverage= {(1,2), (1,7), (2,3), (2,4) ,(3,2),(4,5), (4,6),(5,6),(6,1)}
+Test paths: [1,2,3,2,4,6,1,7], [1,2,4, 5, 6, 1,7]
+TR for Prime Path Coverage = {(1,2,4,6,1), (1,2,4,5,6,1), (2,3,2), (2,4,6,1,2), (2,4,5,6,1,2), (3,2,3), (3,2,4,6,1,7), (3,2,4,5,6,1,7), (4,5,6,1,2,4), (4,5,6,1,2,3), (4,6,1,2,4), (4,6,1,2,3), (5,6,1,2,4,5), (6,1,2,4,6), (6,1,2,4,5,6)}
+
+f, Test path p3 = [1,2,3,2,4,5,6,1,7] achieves Node Coverage but not Edge Coverage.
+
+g, p1 = [1,2,4,5,6,1,7]
+p2 = [1,2,3,2,4,6,1,7]
+p1 and p2 together achieve Egde Coverage but not Prime Path Coverage
+p2 = [1,2,3,2,4,6,1,7]
+p3 = [1,2,3,2,4,5,6,1,7]
+p2 and p3 together achieve Egde Coverage but not Prime Path Coverage
