@@ -18,42 +18,68 @@ The call sites are:
 9. Line 94, Watch::doTransition() ! Time:changeTime()
 
 c. List all coupling du-pairs for each call site.
+
 -  Call sites 1, 2 and 3 are implicit within the constructor for Watch. Since Time
   does not have a constructor defined, the default constructor is called.
+  
 -  Call sites 4, 5 and 6 are from Watch’s toString() method to Time’s toString
   method. The Time objects are passed in, and a string is returned. Time’s toString()
   method does not refer to the object explicitly, so we use "instance" for the variable
   name. The six du-pairs are:
+  
   A. (Watch::toString(), watch, 69) ! (Time::toString(), instance, 55)
+  
   B. (Watch::toString(), stopwatch, 70) ! (Time::toString(), instance, 55)
+  
   C. (Watch::toString(), alarm, 71) ! (Time::toString(), instance, 55)
+  
   D. (Time::toString(), String, 55) ! (Watch::toString(), String, 69)
+  
   E. (Time::toString(), String, 55) ! (Watch::toString(), String, 70)
+  
   F. (Time::toString(), String, 55) ! (Watch::toString(), String, 71)
+  
 -  Call sites 7, 8 and 9 are from Watch’s doTransition() to Time’s changeTime().
-  A. Call site 7: (Watch::doTransition(), button, 74) ! (Time::changeTime(),
-  29)
-  B. Call site 8: (Watch::doTransition(), button, 74) ! (Time::changeTime(),
-  29)
-  C. Call site 9: (Watch::doTransition(), button, 74) ! (Time::changeTime(),
-  29)
+
+  A. Call site 7: (Watch::doTransition(), button, 74) ! (Time::changeTime(), 29)
+  
+  B. Call site 8: (Watch::doTransition(), button, 74) ! (Time::changeTime(), 29)
+  
+  C. Call site 9: (Watch::doTransition(), button, 74) ! (Time::changeTime(), 29)
+  
   D. (Time::changeTime(), instance, 31) ! (Watch::doTransition(), watch, 82)
+  
   E. (Time::changeTime(), instance, 35) ! (Watch::doTransition(), watch, 82)
+  
   F. (Time::changeTime(), instance, 37) ! (Watch::doTransition(), watch, 82)
+  
   G. (Time::changeTime(), instance, 42) ! (Watch::doTransition(), watch, 82)
+  
   H. (Time::changeTime(), instance, 46) ! (Watch::doTransition(), watch, 82)
+  
   I. (Time::changeTime(), instance, 48) ! (Watch::doTransition(), watch, 82)
+  
   J. (Time::changeTime(), instance, 31) ! (Watch::doTransition(), stopwatch, 88)
+  
   K. (Time::changeTime(), instance, 35) ! (Watch::doTransition(), stopwatch, 88)
+  
   L. (Time::changeTime(), instance, 37) ! (Watch::doTransition(), stopwatch, 88)
+  
   M. (Time::changeTime(), instance, 42) ! (Watch::doTransition(), stopwatch, 88)
+  
   N. (Time::changeTime(), instance, 46) ! (Watch::doTransition(), stopwatch, 88)
+  
   O. (Time::changeTime(), instance, 48) ! (Watch::doTransition(), stopwatch, 88)
   P. (Time::changeTime(), instance, 31) ! (Watch::doTransition(), alarm, 94)
-  Q. (Time::changeTime(), instance, 35) ! (Watch::doTransition(), alarm, 94)61
+  
+  Q. (Time::changeTime(), instance, 35) ! (Watch::doTransition(), alarm, 94)
+  
   R. (Time::changeTime(), instance, 37) ! (Watch::doTransition(), alarm, 94)
+  
   S. (Time::changeTime(), instance, 42) ! (Watch::doTransition(), alarm, 94)
+  
   T. (Time::changeTime(), instance, 46) ! (Watch::doTransition(), alarm, 94)
+  
   U. (Time::changeTime(), instance, 48) ! (Watch::doTransition(), alarm, 94)
 
 d. Create test data to satisfy All-Coupling-Use Coverage for Watch.
