@@ -7,7 +7,7 @@
 [3, 6, 2, 5, 8], [3, 6, 2, 5, 9], [3, 6, 10], [3, 7, 10], [5, 9, 6, 2, 5], [6, 2, 5, 9, 6], [9, 6, 2, 5, 8], [9, 6, 2, 5, 9]}
 
 #### b)
-* No test path achieves Node Coverage.
+{[1, 4, 8], [2, 5, 9, 6, 10], [3, 7, 10]} does not cover all edges such as [1, 5].  
 
 #### c)
-* No test path achieves Edge Coverage. 
+{[1, 4, 8], [2, 5, 9, 6, 10], [3, 7, 10], [1, 5, 8], [3, 6, 2, 5, 8]} does not cover all prime paths such as [1, 5, 9, 6, 2].
