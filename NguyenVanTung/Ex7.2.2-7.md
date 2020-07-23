@@ -1,0 +1,53 @@
+Answer questions a–d for the graph defined by the following sets:
+
+N = {1, 2, 3}
+
+N 0 = {1}
+
+N f = {3}
+
+E = {(1, 2), (1, 3), (2, 1), (2, 3), (3, 1)}
+
+Also consider the following (candidate) paths:
+
+p 1 = [1, 2, 3, 1]
+
+p 2 = [1, 3, 1, 2, 3]
+
+p 3 = [1, 2, 3, 1, 2, 1, 3]
+
+p 4 = [2, 3, 1, 3]
+
+p 5 = [1, 2, 3, 2, 3]
+
+(a) Which of the listed paths are test paths? For any path that is not
+a test path, explain why not.
+
+(b) List the eight test requirements for Edge-Pair Coverage (only
+the length two subpaths).
+
+(c) Does the set of test paths from part (a) above satisfy Edge-Pair
+Coverage? If not, state what is missing.
+
+(d) Consider the prime path [3, 1, 3] and path p 2 . Does p 2 tour the
+prime path directly? With a sidetrip?
+
+(a) Only p2 and p3 are test paths
+
+p1 doesn't end with a final node
+
+p4 doesn't start with an initial node
+
+p5 contains a ghost edge
+
+(b) (1, 2, 1), (1, 2, 3), (1, 3, 1), 
+(2, 1, 2), (2, 1, 3), (2, 3, 1), 
+(3, 1, 2), (3, 1, 3)
+
+(c) No. p2 and p3 doesn't tour the edge pair (2, 1, 2)
+
+(d) 
+
+p2 doesn't tour the prime path
+
+p2 tour the prime path with sidestrip (1, 2, 1)
