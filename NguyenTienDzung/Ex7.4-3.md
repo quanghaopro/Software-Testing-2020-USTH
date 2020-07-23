@@ -1,4 +1,4 @@
-## Ex 7.2.4-3
+## Ex 7.4-3
 ```
 a)
 - The code show (2) is final and (6) may be final, nodes (1), (3), (4), (5) are not final. 
