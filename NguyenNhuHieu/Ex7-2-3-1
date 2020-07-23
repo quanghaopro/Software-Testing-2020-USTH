@@ -19,11 +19,11 @@ paths. If not, provide additional test paths to satisfy the criterion.
 
 (a)   Graph 2:
              6
-                   ∧
+             ∧
              |
              |
      1-----> 2 ----> 3 ----> 4
-                   ∧          |       |
+             ∧       |       |
              |       |       |
              |       |       v
              |       ------> 5
