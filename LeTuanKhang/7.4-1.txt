@@ -1,0 +1,185 @@
+(b)
+1 public class Watch
+2 {
+3 // Constant values for the button (inputs)
+4 private static final int NEXT = 0;
+5 private static final int UP = 1;
+6 private static final int DOWN = 2;
+7
+8 // Constant values for the state
+9 private static final int TIME = 5;
+10 private static final int STOPWATCH = 6;
+11 private static final int ALARM = 7;
+12
+13 // Primary state variable
+14 private int mode = TIME;
+15
+16 // Three separate times, one for each state
+17 private Time watch, stopwatch, alarm;
+18
+19 // Inner class keeps track of hours and minutes
+20 public class Time
+21 {
+22 private int hour = 0;
+23 private int minute = 0;
+24
+25 // Increases or decreases the time.
+26 // Rolls around when necessary.
+27 public void changeTime (int button)
+28 {
+29 if (button == UP)
+30 {
+31 minute += 1;
+32 if (minute >= 60)
+33 {
+34 minute = 0;
+35 hour += 1;
+36 if (hour >= 12)
+37 hour = 0;
+38 }
+39 }
+40 else if (button == DOWN)
+41 {
+42 minute -= 1;
+43 if (minute < 0)
+44 {
+45 minute = 59;
+46 hour -= 1;
+47 if (hour <= 0)
+48 hour = 12;
+49 }
+50 }
+51 } // end changeTime()
+52
+53 public String toString ()
+54 {
+55 return (hour + ":" + minute);
+56 } // end toString()
+57 } // end class Time
+58
+59
+60 public Watch () // Constructor
+61 {
+62 watch = new Time();
+63 stopwatch = new Time();
+64 alarm = new Time();
+65 } // end Watch constructor
+66
+67 public String toString () // Converts values
+68 {
+69 return ("watch is: " + watch + "\n"
+70 + "stopwatch is: " + stopwatch + "\n"
+71 + "alarm is: " + alarm);
+72 } // end toString()
+73
+74 public void doTransition (int button) // Handles inputs
+75 {
+76 switch (mode)
+77 {
+78 case TIME:
+79 if (button == NEXT)
+80 mode = STOPWATCH;
+81 else
+82 watch.changeTime (button);
+83 break;
+84 case STOPWATCH:
+85 if (button == NEXT)
+86 mode = ALARM;
+87 else
+88 stopwatch.changeTime (button);
+89 break;
+90 case ALARM:
+91 if (button == NEXT)
+92 mode = TIME;
+93 else
+94 alarm.changeTime (button);
+95 break;
+96 default:
+97 break;
+98 }
+99 } // end doTransition()
+100 } // end Watch
+
+The call sites are:
+i. Line 62, Watch::constructor() ? Time:constructor()
+ii. Line 63, Watch::constructor() ? Time:constructor()
+iii. Line 64, Watch::constructor() ? Time:constructor()
+iv. Line 69, Watch::toString() ? Time:toString()
+v. Line 70, Watch::toString() ? Time:toString()
+vi. Line 70, Watch::toString() ? Time:toString()
+vii. Line 82, Watch::doTransition() ? Time:changeTime()
+viii. Line 88, Watch::doTransition() ? Time:changeTime()
+ix. Line 94, Watch::doTransition() ? Time:changeTime()
+
+(c)i. Call sites i, ii, and iii are implicit within the constructor for Watch. Since Time
+does not have a constructor defined, the default constructor is called (by Java’s
+rules, that means the default values are assigned to the instance variales, that is,
+hour and minute both get the value 0).
+ii. Call sites iv, v, and vi are from Watch’s toString() method to Time’s toString
+method. The Time objects are passed in, and a string is returned. Time’s toString()
+method does not refer to the object explicitly, so we use “instance” for the variable
+name. The six du-pairs are:
+A. (Watch::toString(), watch, 69) ? (Time::toString(), instance, 55)
+B. (Watch::toString(), stopwatch, 70) ? (Time::toString(), instance, 55)
+C. (Watch::toString(), alarm, 71) ? (Time::toString(), instance, 55)
+D. (Time::toString(), String, 55) ? (Watch::toString(), String, 69)
+E. (Time::toString(), String, 55) ? (Watch::toString(), String, 70)
+F. (Time::toString(), String, 55) ? (Watch::toString(), String, 71)
+iii. Call sites vii, viii, and ix are from Watch’s doTransition() to Time’s changeTime().
+The parameter button is implicitly defined at line 74 (entrance to the method), and
+the Time objects are defined within changeTime(). The first three coupling du-pairs
+have the same line numbers for the last-defs and first-uses, so are annoted with the
+call site number. Because of the complex logic in changeTime(), it contains six
+last-defs of its instance variable (assignments to minute and hour), resulting in 18
+coupling du-pairs for values returned to doTransition().
+A. Call site vii: (Watch::doTransition(), button, 74) ? (Time::changeTime(),
+29)
+B. Call site viii: (Watch::doTransition(), button, 74) ? (Time::changeTime(),
+29)
+C. Call site vix: (Watch::doTransition(), button, 74) ? (Time::changeTime(),
+29)
+D. (Time::changeTime(), instance, 31) ? (Watch::doTransition(), watch, 82)
+E. (Time::changeTime(), instance, 35) ? (Watch::doTransition(), watch, 82)
+F. (Time::changeTime(), instance, 37) ? (Watch::doTransition(), watch, 82)
+G. (Time::changeTime(), instance, 42) ? (Watch::doTransition(), watch, 82)
+H. (Time::changeTime(), instance, 46) ? (Watch::doTransition(), watch, 82)
+I. (Time::changeTime(), instance, 48) ? (Watch::doTransition(), watch, 82)
+J. (Time::changeTime(), instance, 31) ? (Watch::doTransition(), stopwatch, 88)
+K. (Time::changeTime(), instance, 35) ? (Watch::doTransition(), stopwatch, 88)
+L. (Time::changeTime(), instance, 37) ? (Watch::doTransition(), stopwatch, 88)
+M. (Time::changeTime(), instance, 42) ? (Watch::doTransition(), stopwatch, 88)
+N. (Time::changeTime(), instance, 46) ? (Watch::doTransition(), stopwatch, 88)
+O. (Time::changeTime(), instance, 48) ? (Watch::doTransition(), stopwatch, 88)
+P. (Time::changeTime(), instance, 31) ? (Watch::doTransition(), alarm, 94)
+Q. (Time::changeTime(), instance, 35) ? (Watch::doTransition(), alarm, 94)
+R. (Time::changeTime(), instance, 37) ? (Watch::doTransition(), alarm, 94)
+S. (Time::changeTime(), instance, 42) ? (Watch::doTransition(), alarm, 94)
+T. (Time::changeTime(), instance, 46) ? (Watch::doTransition(), alarm, 94)
+U. (Time::changeTime(), instance, 48) ? (Watch::doTransition(), alarm, 94)
+
+(d)This example demonstrates the power of All-Coupline-Use, because it requires some very
+long tests. A common concern about test criteria and automated test data generation is
+that they might not require long tests. To tour the coupling du-pairs on the “rollover”
+assignments of minute at lines 35 and 46, we must increment the watch 60 times. To
+tour the coupling du-pairs on the “rollover” assignments of hour at lines 37 and 48, we
+must increment the watch 60*24 = 1440 times! The other coupling du-pairs are trivial,
+so we only give tests for the 18 coupling du-pairs from changeTime() to doTransition().
+i. t1: mode = TIME, button = UP
+ii. t2: mode = TIME, button = UP, UP, ..., UP 60 times (we abbreviate this as
+UP60)
+iii. t3: mode = TIME, button = UP1440
+iv. t4: mode = TIME, button = DOWN
+v. t5: mode = TIME, button = DOW N60
+vi. t6: mode = TIME, button = DOW N1440
+vii. t7: mode = STOPWATCH, button = UP
+viii. t8: mode = STOPWATCH, button = UP60
+ix. t9: mode = STOPWATCH, button = UP1440
+x. t10: mode = STOPWATCH, button = DOWN
+xi. t11: mode = STOPWATCH, button = DOW N60
+xii. t12: mode = STOPWATCH, button = DOW N1440
+xiii. t13: mode = ALARM, button = UP
+xiv. t14: mode = ALARM, button = UP60
+xv. t15: mode = ALARM, button = UP1440
+xvi. t16: mode = ALARM, button = DOWN
+xvii. t17: mode = ALARM, button = DOW N60
+xviii. t18: mode = ALARM, button = DOW N1440
