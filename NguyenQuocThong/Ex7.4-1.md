@@ -1,0 +1,37 @@
+Ex7.4-1
+Use the class Watch in Figures 7.38 and 7.39 in Section 7.5 to answer questions a–d below.
+a) Draw control flow graphs for the methods in Watch.
+b) List all the call sites.
+c) List all coupling du-pairs for each call site.
+d) Create test data to satisfy All-Coupling-Use Coverage for Watch.
+
+b) The call sites are: 
+1.  Line 62, Watch::constructor() → Time:constructor() 
+2. Line 63, Watch::constructor() → Time:constructor() 
+3. Line 64, Watch::constructor() → Time:constructor() 
+4. Line 69, Watch::toString() → Time:toString() 
+3. Line 70, Watch::toString() → Time:toString() 
+6. Line 70, Watch::toString() → Time:toString() 
+7. Line 82, Watch::doTransition() → Time:changeTime()
+8. Line 88, Watch::doTransition() → Time:changeTime()
+9. Line 94, Watch::doTransition() → Time:changeTime()
+
+d)
+1. t1: mode = TIME, button = UP
+2. t2: mode = TIME, button = UP, UP, ..., UP60
+3. t3: mode = TIME, button = UP1440
+4. t4: mode = TIME, button = DOWN
+5. t5: mode = TIME, button = DOWN60
+6. t6: mode = TIME, button = DOWN1440
+7. t7: mode = STOPWATCH, button = UP
+8. t8: mode = STOPWATCH, button = UP60
+9. t9: mode = STOPWATCH, button = UP1440
+10. t10: mode = STOPWATCH, button = DOWN
+11. t11: mode = STOPWATCH, button = DOWN60
+12. t12: mode = STOPWATCH, button = DOWN1440
+13. t13: mode = ALARM, button = UP
+14. t14: mode = ALARM, button = UP60
+15. t15: mode = ALARM, button = UP1440
+16. t16: mode = ALARM, button = DOWN
+17. t17: mode = ALARM, button = DOWN60
+18. t18: mode = ALARM, button = DOWN1440
