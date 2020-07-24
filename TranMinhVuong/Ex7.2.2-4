@@ -1,0 +1,5 @@
+b) {1,2,3,2,4} is the only test path that achieves Node Coverage,yet it also covers Edge Coverage (1,2) (2,3) (3,2) (2,4)
+c) {1,2,3,2,4}. This test paths don't include {3,2,3}
+
+d)	{1,2,4},{1,2,3,2,3,2,4}
+	
